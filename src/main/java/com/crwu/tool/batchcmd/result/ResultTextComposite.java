@@ -1,6 +1,7 @@
 package com.crwu.tool.batchcmd.result;
 
 import cn.hutool.core.date.DatePattern;
+import cn.hutool.core.swing.clipboard.ClipboardUtil;
 import com.bluemoon.pf.tools.extra.ssh.vo.CmdBaseVo;
 import com.crwu.tool.batchcmd.Util;
 import com.crwu.tool.batchcmd.infoPart.MachineInfoBean;
@@ -44,12 +45,21 @@ public class ResultTextComposite extends YtComposite implements IResultPart{
             }
         });
 
+        Button copyBtn = new Button(this,SWT.PUSH);
+        copyBtn.setText("复制报文");
+        copyBtn.addSelectionListener(new SelectionAdapter() {
+            @Override
+            public void widgetSelected(SelectionEvent e) {
+                ClipboardUtil.setStr(styledText.getText());
+            }
+        });
+
         styledText = new StyledText(this, SWT.BORDER|SWT.VERTICAL|SWT.WRAP|SWT.MULTI);
 
         styledText.setLayoutData(LayoutUtil.createFillGrid());
 
 
-
+        Util.addSelectAllListener(styledText);
 
     }
 

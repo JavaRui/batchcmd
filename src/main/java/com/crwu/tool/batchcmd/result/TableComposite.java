@@ -88,6 +88,9 @@ public class TableComposite extends YtComposite implements IResultPart{
         if(split.length == 0){
             resultBean.setState("unknown");
         }
+        if(split.length == 1 && split[0].length() == 0){
+            resultBean.setState("unknown");
+        }
 
 //            goodsBeanTable.setEoList(beanList);
         int size = goodsBeanTable.getEoList().size();

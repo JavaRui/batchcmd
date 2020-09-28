@@ -22,6 +22,7 @@ import java.util.concurrent.SynchronousQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * @author wuchengrui
@@ -72,12 +73,14 @@ public class CmdContentPart extends YtComposite {
                 if(i == SWT.CANCEL){
                     return ;
                 }
+                AtomicLong ll = new AtomicLong(0);
                 resultPart.start();
                 resultPart.addLog("开始执行==================");
                 clearDirty();
                 CmdSimpleProcess[] cmds = getCmds();
                 analysis.forEach(bean->{
                     threadPoolExecutor.execute(()->{
+                        log.info("????????????           "+ll.incrementAndGet());
                         runCmd(bean , cmds);
                     });
 

@@ -79,6 +79,8 @@ public class InfoContentPart extends YtComposite implements IInfoContentPart{
         contentText.setLayoutData(LayoutUtil.createFillGrid());
         this.setGridLayout();
 
+        Util.addSelectAllListener(contentText);
+
     }
 
     public String getSpText(){
