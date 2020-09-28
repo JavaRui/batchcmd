@@ -34,7 +34,6 @@ public class ResultTextComposite extends YtComposite implements IResultPart{
     }
 
     private void init(){
-        setGridLayout();
 
         Button btn = new Button(this,SWT.PUSH);
         btn.setText("清除日志");
@@ -53,6 +52,8 @@ public class ResultTextComposite extends YtComposite implements IResultPart{
                 ClipboardUtil.setStr(styledText.getText());
             }
         });
+
+        setGridLayoutByChildren(false);
 
         styledText = new StyledText(this, SWT.BORDER|SWT.VERTICAL|SWT.WRAP|SWT.MULTI);
 
